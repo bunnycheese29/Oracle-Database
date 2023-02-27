@@ -1,29 +1,29 @@
---����Ŭ���� �����ϴ� �⺻ �Լ� �̸�()
+--대소문자
 SELECT UPPER(ENAME)AS �빮��, LOWER(ENAME), INITCAP(ENAME) FROM EMP;
 
---���ڿ��� ���� ���ϱ� LENGTH() , LENGTHB()
+--LENGTH() 글자수
 SELECT ENAME, LENGTH(ENAME) FROM EMP;
 SELECT ENAME, LENGTH(ENAME) FROM EMP WHERE LENGTH(ENAME) = 6; 
 SELECT ENAME, LENGTHB(ENAME) FROM EMP;
  
---LENGTHB()�� ����Ʈ�� (�ѱ��� 3����Ʈ), DUAL�� �������̺�
+--LENGTHB() 바이트 값
 SELECT LENGTH('����Ŭ'), LENGTHB('����Ŭ SQL') FROM DUAL;
 
---SUBSTR() ���� �߶󳻱�
+--SUBSTR() 문자 잘라버리기
 SELECT JOB, SUBSTR(JOB,1,2), SUBSTR(JOB,3,2), SUBSTR(JOB,5), SUBSTR(JOB,-3,2) FROM EMP;
 
---INSTR() ���ڿ��� ��ġ�� ���� �Լ� 
+--INSTR() 
 SELECT INSTR('HELLO ORACLE', 'L',1,2) FROM DUAL;
 SELECT INSTR(UPPER('Oracle database 11g release'),'DATABASE') AS RESULT FROM DUAL;
 
 SELECT * FROM EMP WHERE INSTR(ENAME,'S')>0;
 
---REPLACE() ���ڿ� �ٲ�ġ��
+--REPLACE() 
 SELECT '010-1111-2222' AS ORIGINAL, REPLACE('010-1111-2222', '-',' ') AS BLANK, REPLACE('010-1111-2222', '-','')AS NOBLANK FROM DUAL;
 
 SELECT '010 1111-2222' AS ORIGINAL, REPLACE(REPLACE('010 1111-2222','-'),' ') AS NEW FROM DUAL;
 
---RPAD() , LPAD() �� ������ Ư�� ���ڷ� ä���
+--RPAD() , LPAD() 
 SELECT 'ORACLE', 
 LPAD('ORACLE', 10, '#') AS LPAD01,
 LPAD('ORACLE', 10) AS LPAD02,
@@ -31,16 +31,16 @@ RPAD('ORACLE', 10, '#') AS RPAD01,
 RPAD('ORACLE', 10) AS RPAD02
  FROM DUAL;
  
---EMP�� �̸��� ó�� �α��ڸ� ����� ����ŷ �ϱ�
+--EMP 전화번호, 주민번호 암호화
 SELECT RPAD((SUBSTR(ENAME,1,2)),LENGTH(ENAME),'*') FROM EMP; 
 
 SELECT RPAD('971122-',14,'*') AS �ֹε�Ϲ�ȣ FROM DUAL;
 
---CONCAT() ���ڿ� ��ġ��
+--CONCAT()
 SELECT CONCAT(EMPNO, ENAME), CONCAT(EMPNO, CONCAT( ':', ENAME)) AS NEW FROM EMP;
 SELECT ENAME || JOB, ENAME || ' : ' || JOB AS NEW FROM EMP;
 
---TRIM() ���ڿ� ����
+--TRIM() 
 SELECT '    ORACLE    ' AS ORIGINAL,
 LTRIM('    ORACLE    ') AS LTRIM,
 RTRIM('    ORACLE    ') AS RTRIM,
@@ -50,8 +50,7 @@ FROM DUAL;
 SELECT RTRIM('1234000', '0') AS TRIM0 FROM DUAL;
 
 
---���� ���� �Լ�
---ROUND() ������ ������ Ư�� ��ġ���� �ݿø��� ���� ��ȯ
+--ROUND() 
 SELECT ROUND(1234.543),
 ROUND(1234.443),
 ROUND(1234.443,0)
@@ -62,20 +61,20 @@ ROUND(1234.443,2),
 ROUND(1234.443,3)
 FROM DUAL;
 
---TRUNC() ������ ������ Ư�� ��ġ���� ������ ���� ��ȯ
+--TRUNC() 지정 된 위치에서 숫자 잘라버리기
 SELECT 
 TRUNC(1234.543,1) AS TRUNC,
 TRUNC(1234.447,2) AS TRUNC0,
 TRUNC(1234.443,0) AS TRUNC1
 FROM DUAL;
 
---CEIL() ������ ���ں��� ū ���� �� ���� ���� ������ ��ȯ <> FLOOR()
+--CEIL() <> FLOOR()
 SELECT
 CEIL(3.14),
 FLOOR(3.14)
 FROM DUAL;
 
---MOD() ������ ���ڸ� ���� ������ ���� ��ȯ
+--MOD() 숫자 두개 나누고 남은 값
 SELECT
 MOD(15, 6),
 MOD(10, 2),
